@@ -4,6 +4,7 @@ package co.edu.unal.tictactoe;
         import android.app.Activity;
         import android.app.AlertDialog;
         import android.app.Dialog;
+        import android.content.DialogInterface;
         import android.graphics.Color;
 
         import android.graphics.drawable.AdaptiveIconDrawable;
@@ -128,10 +129,11 @@ public class MainActivity extends Activity  {
 
         return true;
     }
+
     @Override
     protected Dialog onCreateDialog(int id) {
         Dialog dialog = null;
-        AlertDialog.Builder builder = newAlertDialog.Builder(this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
         switch(id) {
             case DIALOG_DIFFICULTY_ID:builder.setTitle(R.string.difficulty_choose);
                    final CharSequence[] levels = {
@@ -139,7 +141,7 @@ public class MainActivity extends Activity  {
                     getResources().getString(R.string.difficulty_harder),
                     getResources().getString(R.string.difficulty_expert)};
 
-            builder.setSingleChoiceItems(levels, selected, newDialogInterface.OnClickListener() {
+            builder.setSingleChoiceItems(levels,selected, new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int item) {
                     dialog.dismiss();
 

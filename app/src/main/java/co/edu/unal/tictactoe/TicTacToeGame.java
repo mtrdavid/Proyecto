@@ -24,6 +24,13 @@ public class TicTacToeGame {
     public enum DifficultyLevel {Easy, Harder, Expert};
 
     private DifficultyLevel mDifficultyLevel = DifficultyLevel.Expert;
+
+    public DifficultyLevel getDifficultyLevel() {
+        return mDifficultyLevel;
+    }
+    public void setDifficultyLevel(DifficultyLevel difficultyLevel) {
+        mDifficultyLevel = difficultyLevel;
+    }
     public TicTacToeGame() {
         mBoard = new char[BOARD_SIZE];
         for (int i = 0; i < BOARD_SIZE; i++) {
