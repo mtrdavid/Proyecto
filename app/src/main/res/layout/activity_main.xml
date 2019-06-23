@@ -5,6 +5,7 @@ android:orientation="vertical"
 android:layout_width="fill_parent"
 android:layout_height="fill_parent"
 android:gravity="center_horizontal" >
+
 <TableLayout
     android:id="@+id/play_grid" android:layout_width="fill_parent"
     android:layout_height="wrap_content" android:layout_marginTop="5dp" >
@@ -53,10 +54,95 @@ android:gravity="center_horizontal" >
 
         </TableRow>
     </TableLayout>
-<TextView android:id="@+id/information" android:layout_width="fill_parent"
-    android:layout_height="wrap_content" android:text="info"
-    android:gravity="center_horizontal" android:layout_marginTop="20dp"
-    android:textSize="20dp" />
+
+    <TextView
+        android:id="@+id/information"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="20dp"
+        android:gravity="center_horizontal"
+        android:text="info"
+        android:textSize="20dp"
+        android:layout_alignParentLeft="true" />
+
+    <RelativeLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="33dp"
+        android:background="#DBCBC8">
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="0dp"
+            android:text="Humano:" />
+
+        <TextView
+            android:id="@+id/humanCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginBottom="7dp"
+            android:layout_toEndOf="@+id/textView"
+            android:layout_toRightOf="@+id/textView"
+            android:text="0" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="123dp"
+            android:layout_marginLeft="123dp"
+            android:layout_marginBottom="7dp"
+            android:text="Empates:" />
+
+        <TextView
+            android:id="@+id/tieCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="3dp"
+            android:layout_marginLeft="3dp"
+            android:layout_marginBottom="7dp"
+            android:layout_toEndOf="@+id/textView3"
+            android:layout_toRightOf="@+id/textView3"
+            android:text="0" />
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="35dp"
+            android:layout_marginRight="35dp"
+            android:layout_marginBottom="6dp"
+            android:text="Android:" />
+
+        <TextView
+            android:id="@+id/androidCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="22dp"
+            android:layout_marginRight="22dp"
+            android:layout_marginBottom="6dp"
+            android:text="0" />
+
+    </RelativeLayout>
 
 </LinearLayout>
+
 

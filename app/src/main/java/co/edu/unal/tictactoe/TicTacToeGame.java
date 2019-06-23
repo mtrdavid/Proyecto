@@ -21,6 +21,9 @@ public class TicTacToeGame {
        public static final char OPEN_SPOT = ' ';
        private Random mRand;
 
+    public enum DifficultyLevel {Easy, Harder, Expert};
+
+    private DifficultyLevel mDifficultyLevel = DifficultyLevel.Expert;
     public TicTacToeGame() {
         mBoard = new char[BOARD_SIZE];
         for (int i = 0; i < BOARD_SIZE; i++) {
@@ -86,45 +89,26 @@ public class TicTacToeGame {
        public int getComputerMove() {
 
 
-           int move;
-
-           // First see if there's a move O can make to win
-           for (int i = 0; i < BOARD_SIZE; i++) {
-               if (mBoard[i] != HUMAN_PLAYER && mBoard[i] != COMPUTER_PLAYER) {
-                   char curr = mBoard[i];
-                   mBoard[i] = COMPUTER_PLAYER;
-                   if (checkForWinner() == 3) {
-                       System.out.println("Computer is moving to " + (i + 1));
-                       return mBoard[i] = COMPUTER_PLAYER;
-                   } else
-                       mBoard[i] = curr;
-               }
+           int move = -1;
+           if (mDifficultyLevel == DifficultyLevel.Easy)
+               move = getRandomMove();
+           else if (mDifficultyLevel == DifficultyLevel.Harder) {
+               move = getWinningMove();
+               if (move == -1)
+                   move = getRandomMove();
            }
+           else if (mDifficultyLevel == DifficultyLevel.Expert) {
 
-           // See if there's a move O can make to block X from winning
-           for (int i = 0; i < BOARD_SIZE; i++) {
-               if (mBoard[i] != HUMAN_PLAYER && mBoard[i] != COMPUTER_PLAYER) {
-                   char curr = mBoard[i];   // Save the current number
-                   mBoard[i] = HUMAN_PLAYER;
-                   if (checkForWinner() == 2) {
-                       return mBoard[i] = COMPUTER_PLAYER;
-
-
-                   } else
-                       mBoard[i] = curr;
-               }
+               move = getWinningMove();
+               if (move == -1)
+                   move = getBlockingMove();
+               if (move == -1)
+                   move = getRandomMove();
            }
-
-           // Generate random move
-           do {
-               move = mRand.nextInt(BOARD_SIZE);
-           } while (mBoard[move] == HUMAN_PLAYER || mBoard[move] == COMPUTER_PLAYER);
-
-           System.out.println("Computer is moving to " + (move + 1));
-
-           return mBoard[move] = COMPUTER_PLAYER;
-
+           return move;
        }
+
+
 
 
        public void clearBoard() {
@@ -138,6 +122,52 @@ public class TicTacToeGame {
     public void setMove(char player, int location) {
         mBoard[location]=player;
 
+    }
+    public int getWinningMove(){
+
+
+        for (int i = 0; i < BOARD_SIZE; i++) {
+            if (mBoard[i] != HUMAN_PLAYER && mBoard[i] != COMPUTER_PLAYER) {
+                char curr = mBoard[i];
+                mBoard[i] = COMPUTER_PLAYER;
+                if (checkForWinner() == 3) {
+
+                    return i;
+                } else
+                    mBoard[i] = curr;
+            }
+        }
+       return getBlockingMove();
+
+    }
+
+    public int getBlockingMove(){
+
+        for (int i = 0; i < BOARD_SIZE; i++) {
+            if (mBoard[i] != HUMAN_PLAYER && mBoard[i] != COMPUTER_PLAYER) {
+                char curr = mBoard[i];   // Save the current number
+                mBoard[i] = HUMAN_PLAYER;
+                if (checkForWinner() == 2) {
+                    return i;
+
+
+                } else
+                    mBoard[i] = curr;
+
+            }
+        }
+        return getRandomMove();
+    }
+
+    public int getRandomMove(){
+        int move;
+        do {
+            move = mRand.nextInt(BOARD_SIZE);
+        } while (mBoard[move] == HUMAN_PLAYER || mBoard[move] == COMPUTER_PLAYER);
+
+
+
+        return move;
     }
 }
 
